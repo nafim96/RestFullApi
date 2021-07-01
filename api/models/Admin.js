@@ -2,22 +2,17 @@ const mongoose = require("mongoose");
 const valid = require("validator");
 const Schema = mongoose.Schema;
 
-const ContactSchema = new Schema({
+const AdminSchema = new Schema({
   name: {
     type: String,
     trim: true,
+    required: true,
     minlength: 3,
-    required: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
   },
   email: {
     type: String,
     trim: true,
+    unique: true,
     validate: {
       validator: (v) => {
         return valid.isEmail(v);
@@ -27,5 +22,5 @@ const ContactSchema = new Schema({
   },
 });
 
-const Contact = mongoose.model("Contact", ContactSchema);
-module.exports = Contact;
+const Admin = mongoose.model("Admin", AdminSchema);
+module.exports = Admin;

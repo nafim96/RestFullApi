@@ -27,6 +27,11 @@ db.once("open", () => {
 // import contact route from routes folder
 const contactRoute = require("./api/routes/contact");
 
+//import Admin route
+const adminRoute = require("./api/routes/admin");
+
+//import user route
+const userRoute = require("./api/routes/user");
 // Established Middleware and permit to next step using next() Function
 app.use((req, res, next) => {
   console.log("I'm middleware function");
@@ -34,10 +39,16 @@ app.use((req, res, next) => {
 });
 
 // Create dynamic port use dotenv and use default port 3000
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // All Contact Routing method here using middleware
 app.use("/api/contacts", contactRoute);
+
+//Admin Routing Method Here
+app.use("/api/admins", adminRoute);
+
+//Admin Routing Method Here
+app.use("/api/users", userRoute);
 
 // This Routing for Home page
 app.get("/", (req, res) => {
